@@ -1,0 +1,30 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    struct                                             :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jbota <marvin@42.fr>                       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/04/27 17:46:02 by jbota             #+#    #+#              #
+#    Updated: 2021/04/27 17:53:38 by jbota            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+typedef struct	s_struct
+{
+	char	*format;
+	int		nprinted;
+	int		i;
+	int		len;
+	int		minus; //-
+	int		plus; //+
+	int		space; // ' '
+	int		zero; // 0
+	int		dot; // . precisionf
+	int		asterix; //*
+	int		width; //0-9
+	int		hash; //#
+	int		precision; //.#
+	int 	length; // LL HH H L
+			t_struck;
+}
