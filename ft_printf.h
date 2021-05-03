@@ -6,7 +6,7 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:36:06 by jbota             #+#    #+#             */
-/*   Updated: 2021/04/27 19:38:41 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/03 20:00:10 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-# define FLAGS cspdiuxX%
+# define FLAGS cspdiuxX%#-+.* 0123456789hl
 
 typedef struct  s_struct
 {
@@ -24,7 +24,7 @@ typedef struct  s_struct
 	int	nprinted;
 	int	i;
 	int	len;
-	int	minus; //-
+	int	minus; //-i
 	int	plus; //+
 	int	space; // ' '
 	int	zero; // 0

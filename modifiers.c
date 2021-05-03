@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   modifiers.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/22 15:56:13 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/03 16:44:01 by jbota            ###   ########.fr       */
+/*   Created: 2021/05/03 16:44:30 by jbota             #+#    #+#             */
+/*   Updated: 2021/05/03 16:57:22 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_printf(const char *bota, ...)
+#include "ft_printf.h"
+
+void	modifiers(const char *src,  t_struct *list, va_list args)
 {
-	va_list		args;
-	int			print;
-	
-	va_start(args, bota);
-	while (*bota)
-	{
-		va_arg(args, char);
-	}
-	va_end(args);
-	free (bota);
-	return (print);
+	width;
+	precision;
+	length;
+	dot;
+
 }

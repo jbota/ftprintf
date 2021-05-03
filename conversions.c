@@ -6,9 +6,28 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:35:21 by jbota             #+#    #+#             */
-/*   Updated: 2021/04/27 19:42:55 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/03 20:00:53 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+void	zerostruct(t_struct *list)
+{
+	list->i = 0;
+	list->nprinted = 0;
+	list->minus = 0;
+	list->plus = 0;
+	list->len = 0;
+	list->space = 0;
+	list->zero = 0;
+	list->dot = 0;
+	list->asterix = 0;
+	list->width = 0;
+	list->hash = 0;
+	list->precision = 0;
+	list->lenght = 0;
+}
+
+}
 
 int	parse(const char *bota, t_struct *list, va_list args, int i)
 {
@@ -44,24 +63,27 @@ int	parse2(t_struct *list, int position, const char *bota, va_list args)
 	if (!ft_strchr("cspdiuxX%", bota[position]))
 		modifiers(bota, list, args);
 	else if (ft_strchr("cspdiuxX%", bota[position]))
-		conversions(bota[position], args, list); 
+	{
+		conversions(bota[position], args, list);
+		zerostruct(list):
+	}
 	return (f->i - 1);
 }	
 
-void	conversions(char c, va_list args, t_struct *s)
+void	conversions(char c, va_list args, t_struct *list)
 {
 	if (c == 'c')
-		ischar(s, args);
+		ischar(list, args);
 	else if (c == 's')
-		isstring(s, args);
+		isstring(list, args);
 	else if (c == 'p')
-		ispointer(s, args, 2);
+		ispointer(list, args, 2);
 	else if (c == 'd' || c == 'i')
-		isint (s, args, 0, 0);
+		isint(list, args, 0, 0);
 	else if (c == 'u')
-		isdecint(s, args);
+		isdecint(list, args);
 	else if (c == 'x' || c == 'X')
-		ishex(s, args, c);
+		ishex(list, args, c);
 	else if (c == '%')
-		ispercent(s);
+		ispercent(list);
 }
