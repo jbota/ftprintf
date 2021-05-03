@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	parse(const char *bota, t_struct *list, va_list args, int	i)
+int	parse(const char *bota, t_struct *list, va_list args, int i)
 {
 	while (bota[i] != '\0')
 	{
@@ -23,12 +23,30 @@ int	parse(const char *bota, t_struct *list, va_list args, int	i)
 			while (ft_strchr(FLAGS, bota[i + 1]))
 			{
 				i++;
-				if (ft_strchr("cspdiuxX%")
-
-
+				if (ft_strchr("cspdiuxX%", bota[i]))
+				{
+					i = parse2(list, i, bota, args) + 2;
+					break ;
+				}
+				else
+					i = parse2(list, i, bota, args);
 			}
+			continue;
+		}
+		i++;
 	}
+	return(list->nprinted)
 }
+
+int	parse2(t_struct *list, int position, const char *bota, va_list args)
+{
+	list->i = position;
+	if (!ft_strchr("cspdiuxX%", bota[position]))
+		modifiers(bota, list, args);
+	else if (ft_strchr("cspdiuxX%", bota[position]))
+		conversions(bota[position], args, list); 
+	return (f->i - 1);
+}	
 
 void	conversions(char c, va_list args, t_struct *s)
 {

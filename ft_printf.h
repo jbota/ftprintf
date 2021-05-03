@@ -14,8 +14,26 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 # define FLAGS cspdiuxX%
 
+typedef struct  s_struct
+{
+	char	*format;
+	int	nprinted;
+	int	i;
+	int	len;
+	int	minus; //-
+	int	plus; //+
+	int	space; // ' '
+	int	zero; // 0
+	int	dot; // . precisionf
+	int	asterix; //*
+	int	width; //0-9
+	int	hash; //#
+	int	precision; //.#
+	int	length; // LL HH H L
+		t_struck;
+}
 #endif
