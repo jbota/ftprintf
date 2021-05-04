@@ -12,11 +12,41 @@
 
 #include "ft_printf.h"
 
+void	left(t_struct *list, char c, char *str, int i)
+{
+	if (list->minus == 0)
+	{
+		if (list->dot && i > list->precision)
+			i = list->precison;
+		if (list->width > i)
+		{
+			while (list->width > i)
+			{	
+				list->len = list->len + write(1, &c, 1);
+				list->nprinted++;
+				list->width--;
+			}
+		}
+		list->len = list->len + write(1, str, 1);
+		list->nprinted = list->nprinted + i;
+	}
+}
+
 void	right(t_struct *list, char c, char *str, int i)
 {
 	if (list->minus != 0)
 	{
-
+		c = ' ';
+		if (list->dot && i > list->precision)
+			i = list->precition;
+		list->len = list->len + write(1, str, i);
+		list->nprinted = list->nprinted + i;
+		while (list->width > i)
+		{
+			list->len = list->len + write(1, &c, 1);
+			list->nprinted++;
+			list->width--;
+		}
 	}
 }
 
