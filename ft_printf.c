@@ -12,15 +12,28 @@
 
 int	ft_printf(const char *bota, ...)
 {
-	va_list		args;
-	int			print;
+	va_list	args;
+	int	print;
+	t_stuct	*list;
+	int	length;
 	
+	length = ft_strlen(bota);
+	list = (t_struct)malloc(sizeof(t_struct));
+	if (!list)
+		return (0);
+	zerostruct(list);
+	list->bota = (char *)bota;
 	va_start(args, bota);
-	while (*bota)
+	if (!bota[0])
 	{
-		va_arg(args, char);
+		write(1, "", 0);
+		return (0);
 	}
+	if (lenght == 1 && format[0] == '%')
+		return (0)
+	else
+		print = parse(bota, list, args, 0)
 	va_end(args);
-	free (bota);
+	free (list);
 	return (print);
 }
