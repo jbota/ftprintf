@@ -1,3 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   udecint.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/14 16:14:48 by jbota             #+#    #+#             */
+/*   Updated: 2021/05/14 20:16:02 by jbota            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+void	right_u(t_struct *list, int len, char *s, int sinal)
+{
+	char	sin;
+	char	c;
+
+	if (list->zero && !list->dot)
+		c = '0';
+	else
+		c = ' ';
+	sin = '\0';
+	if (sinal == POSITIVE)
+		sin = '+';
+	else if (sign == NEGATIVE)
+		sinal = '-';
+	sinal = signzerowidth(list, c, sin, sinal);
+	while (list->width-- > 0)
+		list->nprinted += write(1, &c, 1);
+	if (list->space != 0)
+		list->nprinted += write(1, " ", 1);
+	if (sinal != 0 && sin != '\0')
+		list->nprinted += write(1, &sin, 1);
+	list->nprinted += write(1, s, len);	
+}
+
+void	left_u(t_truck *list, int len, char *s, int sinal)
+{
+	sinal = 0;
+	if (list->space)
+		list->nprinted += write(1, " ", 1);
+	if (sinal == POSITIVE)
+		list->nprinted += write(1, "+", 1);
+	else if (sinal == NEGATIVE)
+		list->nprinted += write(1, "-", 1);
+	while (list->precision > 0)
+	{
+		list->nprinted += write(1, "0", 1);
+		list->precision--;
+	}
+	list->nprinted += write(1, s, len);
+	while (list->width > 0)
+	{
+		list->nprinted += write(1, " ", 1);
+		list->width--;
+	}
+}
 
 void	formatvalue(uintmax_t n, t_struct *list, int sinal)
 {
@@ -32,7 +91,7 @@ void	isudecint(t_struct *list, va_list args)
 	uintmax_t	n;
 	int		sinal;
 
-	sinal = 0;
+	sinat = 0;
 	n = 0;
 	if (list->space)
 		list->space = 0;

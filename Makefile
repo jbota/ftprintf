@@ -12,7 +12,7 @@ O = obj
 
 HEADER = includes
 
-SOURCES = char.c conversions.c modifiers.c string.c ft_printf.c int.c
+SOURCES = char.c conversions.c modifiers.c string.c ft_printf.c int.c aux.c int.c pointer.c udecint.c hex.c
 
 SRCS = $(addprefix $(S)/,$(SOURCES))
 

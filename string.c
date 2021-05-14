@@ -6,7 +6,7 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 18:51:38 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/03 20:00:07 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/14 20:15:50 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	left(t_struct *list, char c, char *str, int i)
 	if (list->minus == 0)
 	{
 		if (list->dot && i > list->precision)
-			i = list->precison;
+			i = list->precision;
 		if (list->width > i)
 		{
 			while (list->width > i)
@@ -38,7 +38,7 @@ void	right(t_struct *list, char c, char *str, int i)
 	{
 		c = ' ';
 		if (list->dot && i > list->precision)
-			i = list->precition;
+			i = list->precision;
 		list->len = list->len + write(1, str, i);
 		list->nprinted = list->nprinted + i;
 		while (list->width > i)
@@ -64,8 +64,8 @@ void	isstring(t_struct *list, va_list args)
 	if (str == NULL)
 		str = "(NULL)";
 	i = ft_strlen(str);
-	if( list->minus == 0)
+	if (list->minus == 0)
 		left(list, c, str, i);
-	else if (lits->minus == 1)
-		righ(list, c, str, i);
+	else if (list->minus == 1)
+		right(list, c, str, i);
 }
