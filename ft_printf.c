@@ -6,19 +6,21 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 15:56:13 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/03 16:44:01 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/06 17:41:38 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
+
 int	ft_printf(const char *bota, ...)
 {
-	va_list	args;
-	int	print;
-	t_stuct	*list;
-	int	length;
-	
+	va_list		args;
+	int			print;
+	t_struct	*list;
+	int			length;
+
 	length = ft_strlen(bota);
-	list = (t_struct)malloc(sizeof(t_struct));
+	list = (t_struct*)malloc(sizeof(t_struct));
 	if (!list)
 		return (0);
 	zerostruct(list);
@@ -29,11 +31,20 @@ int	ft_printf(const char *bota, ...)
 		write(1, "", 0);
 		return (0);
 	}
-	if (lenght == 1 && format[0] == '%')
-		return (0)
+	if (length == 1 && bota[0] == '%')
+		return (0);
 	else
-		print = parse(bota, list, args, 0)
+		print = parse(bota, list, args, 0);
 	va_end(args);
 	free (list);
 	return (print);
+}
+
+#include <stdio.h>
+
+int main()
+{
+	printf("%s", "abcd");
+	ft_printf("%s", "abcd");
+	return(0);
 }
