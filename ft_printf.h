@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-# define FLAGS cspdiuxX%#-+.* 0123456789hl
+# define FLAGS "cspdiuxX%#-+.* 0123456789hl"
 
 typedef struct  s_struct
 {
