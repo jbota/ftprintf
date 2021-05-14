@@ -81,7 +81,7 @@ void	conversions(char c, va_list args, t_struct *list)
 	else if (c == 'd' || c == 'i')
 		isint(list, args, 0, 0);
 	else if (c == 'u')
-		isdecint(list, args);
+		isudecint(list, args);
 	else if (c == 'x' || c == 'X')
 		ishex(list, args, c);
 	else if (c == '%')
