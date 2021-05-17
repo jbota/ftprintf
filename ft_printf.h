@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "../libft/libft.h"
+# include "libft.h"
 
 # define FLAGS "cspdiuxX%#-+.* 0123456789hl"
 
