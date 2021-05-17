@@ -47,7 +47,7 @@ int		ft_printf(const char *bota, ...);
 void	modifiers(const char *src, t_struct *list, va_list args);
 void	flags(const char *bota, t_struct *list);
 void	width(const char *bota, t_struct *list, va_list args);
-void	dot(const char *bota, t_struct *list, va_list args, int j);
+void	precision(const char *bota, t_struct *list, va_list args, int h);
 void	left(t_struct *list, char c, char *str, int i);
 void	right(t_struct *list, char c, char *str, int i);
 void	isstring(t_struct *list, va_list args);
