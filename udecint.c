@@ -22,9 +22,9 @@ void	right_u(t_struct *list, int len, char *s, int sinal)
 	else
 		c = ' ';
 	sin = '\0';
-	if (sinal == POSITIVE)
+	if (sinal == '+')
 		sin = '+';
-	else if (sign == NEGATIVE)
+	else if (sinal == '-')
 		sinal = '-';
 	sinal = signzerowidth(list, c, sin, sinal);
 	while (list->width-- > 0)
@@ -36,14 +36,14 @@ void	right_u(t_struct *list, int len, char *s, int sinal)
 	list->nprinted += write(1, s, len);	
 }
 
-void	left_u(t_truck *list, int len, char *s, int sinal)
+void	left_u(t_struct *list, int len, char *s, int sinal)
 {
 	sinal = 0;
 	if (list->space)
 		list->nprinted += write(1, " ", 1);
-	if (sinal == POSITIVE)
+	if (sinal == '+')
 		list->nprinted += write(1, "+", 1);
-	else if (sinal == NEGATIVE)
+	else if (sinal == '-')
 		list->nprinted += write(1, "-", 1);
 	while (list->precision > 0)
 	{
@@ -58,7 +58,7 @@ void	left_u(t_truck *list, int len, char *s, int sinal)
 	}
 }
 
-void	formatvalue(uintmax_t n, t_struct *list, int sinal)
+void	formatvalue(unsigned int n, t_struct *list, int sinal)
 {
 	char	*s;
 	int	len;
@@ -69,7 +69,7 @@ void	formatvalue(uintmax_t n, t_struct *list, int sinal)
 	len = manel(n);
 	if (n == 0)
 		len = 1;
-	if (list->dot && list->precsion == 0)
+	if (list->dot && list->precision == 0)
 		len = 0;
 	if (list->dot && list->precision > len)
 		list->precision = list->precision - len;
@@ -81,23 +81,22 @@ void	formatvalue(uintmax_t n, t_struct *list, int sinal)
 		list->width = list->width - (list->precision + len + list->space);
 	if (list->minus == 0)
 		right_u(list, len, s, sinal);
-	if (ist->minus == 1)
+	if (list->minus == 1)
 		left_u(list, len, s, sinal);
 	free(s);
 }
 
 void	isudecint(t_struct *list, va_list args)
 {
-	uintmax_t	n;
+	unsigned int	n;
 	int		sinal;
 
-	sinat = 0;
+	sinal = 0;
 	n = 0;
 	if (list->space)
 		list->space = 0;
-	if (list->length == 0)
-		n = (unsigned int)va_arg(args, unsigned int);
+	n = (unsigned int)va_arg(args, unsigned int);
 	if (list->plus)
-		sinal = POSITIVE;
+		sinal = '+';
 	formatvalue(n, list, sinal);
 }

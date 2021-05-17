@@ -25,7 +25,7 @@ int	hex_len(unsigned long long n)
 	return (i);
 }
 
-int	right_align(int pwidth, int pprecision, int hexlen, char *s)
+int	right_palign(int pwidth, int pprecision, int hexlen, char *s)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ int	right_align(int pwidth, int pprecision, int hexlen, char *s)
 	return (i);
 }
 
-int	left_align(int pwidth, int pprecision, int hexlen, char *s)
+int	left_palign(int pwidth, int pprecision, int hexlen, char *s)
 {
 	int	i;
 
@@ -82,8 +82,8 @@ void	ispointer(t_struct *list, va_list args, int n)
 	if (list->dot && list->precision == 0)
 		hexlen = 0;
 	if (list->minus)
-		list->nprinted += left_align(pwidth, pprecison, hexlen, s);
+		list->nprinted += left_palign(pwidth, pprecision, hexlen, s);
 	else
-		list->nprinted += right_align(pwidth, pprecision, hexlen, s);
+		list->nprinted += right_palign(pwidth, pprecision, hexlen, s);
 	free(s);
 }

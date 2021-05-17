@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "libft.h"
+# include "./libft/libft.h"
 
 # define FLAGS "cspdiuxX%#-+.* 0123456789hl"
 
@@ -54,24 +54,27 @@ void	isstring(t_struct *list, va_list args);
 void	left(t_struct *list, char c, char *str, int i);
 void	right(t_struct *list, char c, char *str, int i);
 int		signzerowidth(t_struct *list, char c, char sinal, int sign);
-void	rigth_align(t_struct *list, int len, char *s, int sign);
+void	right_align(t_struct *list, int len, char *s, int sign);
 void	left_align(t_struct *list, int len, char *s, int sign);
-void	formatint(intmax_t n, t_struct *list, int sign);
-void	isint(t_struct *list, va_arg args, int sign, intmax_t i);
+void	formatint(int n, t_struct *list, int sign);
+void	isint(t_struct *list, va_list args, int sign, int i);
 int		hex_len(unsigned long long n);
-int		right_align(int pwidth, int pprecision, int hexlen, char *s);
-int		left_align(int pwidth, int pprecision, int hexlen, char *s);
+int		right_palign(int pwidth, int pprecision, int hexlen, char *s);
+int		left_palign(int pwidth, int pprecision, int hexlen, char *s);
 void	ispointer(t_struct *list, va_list args, int n);
 void	right_u(t_struct *list, int len, char *s, int sinal);
-void	left_u(t_truck *list, int len, char *s, int sinal);
-void	formatvalue(uintmax_t n, t_struct *list, int sinal);
+void	left_u(t_struct	*list, int len, char *s, int sinal);
+void	formatvalue(unsigned int n, t_struct *list, int sinal);
 void	isudecint(t_struct *list, va_list args);
 int		manel(long n);
-char	*ft_itoa_base(uintmax_t n, uintmax_t base);
+char	*ft_itoa_base(unsigned int n, unsigned int base);
 void	ishex(t_struct *list, va_list args, char c);
-void	formathex(uintmax_t n, t_struct *list, char c, int len);
+void	formathex(unsigned int n, t_struct *list, char c, int len);
 void	left_hex(t_struct *list, int len, char *s, char c);
 void	right_hex(t_struct *list, int len, char *s, char c);
 int		hexlen(long n);
+void    asterix(const char *bota, t_struct *list, va_list args);
+char	find(t_struct *list);
+void    zeros(t_struct *list, int hexlen, char *s, char c);
 
 #endif

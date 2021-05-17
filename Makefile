@@ -4,7 +4,7 @@ NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror
 
-LIBFT = libft
+LIBFT = .libft/libft.a
 
 S = srcs
 
@@ -22,7 +22,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFT)
-	@cp libft/libft.a ./$(NAMR)
+	@cp libft/libft.a ./$(NAME)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 

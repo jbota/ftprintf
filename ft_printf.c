@@ -39,12 +39,3 @@ int	ft_printf(const char *bota, ...)
 	free (list);
 	return (print);
 }
-
-#include <stdio.h>
-
-int main()
-{
-	printf("%s", "abcd");
-	ft_printf("%s", "abcd");
-	return(0);
-}

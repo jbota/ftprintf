@@ -28,7 +28,7 @@ int	signzerowidth(t_struct *list, char c, char sinal, int sign)
 	return (sign);
 }
 
-void	rigth_align(t_struct *list, int len, char *s, int sign)
+void	right_align(t_struct *list, int len, char *s, int sign)
 {
 	char	sinal;
 	char	c;
@@ -38,9 +38,9 @@ void	rigth_align(t_struct *list, int len, char *s, int sign)
 	else
 		c = ' ';
 	sinal = '\0';
-	if (sign == POSITIVE)
+	if (sign == '+')
 		sinal = '+';
-	else if (sign == NEGATIVE)
+	else if (sign == '-')
 		sinal = '-';
 	sign = signzerowidth(list, c, sinal, sign);
 	while (list->width-- > 0)
@@ -56,9 +56,9 @@ void	left_align(t_struct *list, int len, char *s, int sign)
 {
 	if (list->space)
 		list->nprinted += write(1, " ", 1);
-	if (sign == POSITIVE)
+	if (sign == '+')
 		list->nprinted += write(1, "+", 1);
-	else if (sign == NEGATIVE)
+	else if (sign == '-')
 		list->nprinted += write(1, "-", 1);
 	while (list->precision > 0)
 	{
@@ -73,7 +73,7 @@ void	left_align(t_struct *list, int len, char *s, int sign)
 	}
 }
 
-void	formatint(intmax_t n, t_struct *list, int sign)
+void	formatint(int n, t_struct *list, int sign)
 {
 	int	len;
 	char	*s;
@@ -87,7 +87,7 @@ void	formatint(intmax_t n, t_struct *list, int sign)
 	if (list->dot == 1 && list->precision == 0 && n == 0)
 		len = 0;
 	if (list->dot && list->precision > len)
-		list-precision = list->precision - len;
+		list->precision = list->precision - len;
 	else
 		list->precision = 0;
 	if (sign != 0)
@@ -101,15 +101,14 @@ void	formatint(intmax_t n, t_struct *list, int sign)
 	free(s);
 }
 
-void	isint(t_struct *list, va_arg args, int sign, intmax_t i)
+void	isint(t_struct *list, va_list args, int sign, int i)
 {
-	if (list->length == 0)
-		i = (int)va_arg(ap, int);
+	i = (int)va_arg(args, int);
 	if (list->plus && i >= 0)
-		sign = POS;
+		sign = '+';
 	else if (i < 0)
 	{
-		sign = NEG;
+		sign = '-';
 		i = i * -1;
 	}
 	formatint(i, list, sign);

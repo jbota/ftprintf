@@ -1,6 +1,21 @@
 
 #include "ft_printf.h"
 
+void	asterix(const char *bota, t_struct *list, va_list args)
+{
+	if (bota[list->i] == '*')
+	{
+		list->width = va_arg(args, int);
+		if (list->width < 0)
+		{
+			list->minus = 1;
+			list->minus = -(list->width);
+		}
+		while (bota[list->i] == '*')
+			list->i++;
+	}
+}
+
 void	flags(const char *bota, t_struct *list)
 {
 	while (ft_strchr("-+ #0", bota[list->i]))
@@ -22,10 +37,11 @@ void	flags(const char *bota, t_struct *list)
 
 void	width(const char *bota, t_struct *list, va_list args)
 {
+	asterix(bota, list, args);
 	if (bota[list->i] >= '0' && bota[list->i] <= '9')
 	{
 		list->width = ft_atoi(&bota[list->i]);
-		while (bota[list->i] >= '0' && list[list->i] <= '9')
+		while (bota[list->i] >= '0' && bota[list->i] <= '9')
 		{
 			list->i++;
 			if (bota[list->i] == '*')

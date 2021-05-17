@@ -35,14 +35,14 @@ void	right_hex(t_struct *list, int len, char *s, char c)
 	char	h;
 
 	h = find(list);
-	if (c == '0')
+	if (c == '0' && list->hash == 2)
 	{
-		zeros(list. len, s, c)
-			return ,
+		zeros(list, len, s, c);
+		return ;
 	}
 	while (list->width > 0)
 	{
-		list->nprinted += write(1, &c, 1);
+		list->nprinted += write(1, &h, 1);
 		list->width--;
 	}
 	while (list->precision > 0)
@@ -56,12 +56,16 @@ void	right_hex(t_struct *list, int len, char *s, char c)
 
 void	left_hex(t_struct *list, int len, char *s, char c)
 {
+	if (list->hash == 2 && c == 'x')
+		list->nprinted += write(1, "0x", 2);
+	else if (list->hash == 2 && c == 'X')
+		list->nprinted += write(1, "0X", 2);
 	while (list->precision > 0)
 	{
 		list->nprinted += write(1, "0", 1);
 		list->precision--;
 	}
-	list->nprecision += write(1, s, len);
+	list->nprinted += write(1, s, len);
 	while (list->width > 0)
 	{
 		list->nprinted += write(1, " ", 1);
@@ -70,14 +74,14 @@ void	left_hex(t_struct *list, int len, char *s, char c)
 	free(s);
 }
 
-void	formathex(uintmax_t n, t_struct *list, char c, int len)
+void	formathex(unsigned int n, t_struct *list, char c, int len)
 {
 	char	*s;
 
 	if (c == 'x')
 		s = ft_itoa_base(n, 16);
 	else if (c == 'X')
-		s = ft_itoa_upper(n, 16);
+		s = ft_itoa_base(n, 16);
 	if (n == 0)
 	{
 		len = 1;
@@ -88,7 +92,7 @@ void	formathex(uintmax_t n, t_struct *list, char c, int len)
 		list->precision = list->precision - len;
 	else
 		list->precision = 0;
-	list->width = list->width - (list->precison + len);
+	list->width = list->width - (list->precision + len);
 	if (list->minus == 0)
 		right_hex(list, len, s, c);
 	else if (list->minus == 1)
@@ -97,11 +101,11 @@ void	formathex(uintmax_t n, t_struct *list, char c, int len)
 
 void	ishex(t_struct *list, va_list args, char c)
 {
-	uintmax_t	n;
+	unsigned int		n;
 	int			len;
 
 	n = 0;
-	if (list->lengh == 0)
+	if (list->len == 0)
 		n = (unsigned int)va_arg(args, unsigned int);
 	len = hexlen(n);
 	formathex(n, list, c, len);

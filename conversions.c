@@ -26,9 +26,6 @@ void	zerostruct(t_struct *list)
 	list->width = 0;
 	list->hash = 0;
 	list->precision = 0;
-	list->lenght = 0;
-}
-
 }
 
 int	parse(const char *bota, t_struct *list, va_list args, int i)
@@ -56,7 +53,7 @@ int	parse(const char *bota, t_struct *list, va_list args, int i)
 		}
 		i++;
 	}
-	return(list->nprinted)
+	return(list->nprinted);
 }
 
 int	parse2(t_struct *list, int position, const char *bota, va_list args)
@@ -67,9 +64,9 @@ int	parse2(t_struct *list, int position, const char *bota, va_list args)
 	else if (ft_strchr("cspdiuxX%", bota[position]))
 	{
 		conversions(bota[position], args, list);
-		zerostruct(list):
+		zerostruct(list);
 	}
-	return (f->i - 1);
+	return (list->i - 1);
 }	
 
 void	conversions(char c, va_list args, t_struct *list)
