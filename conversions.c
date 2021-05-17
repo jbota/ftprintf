@@ -6,7 +6,7 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:35:21 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/14 20:24:36 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/17 19:27:25 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	parse(const char *bota, t_struct *list, va_list args, int i)
 				i++;
 				if (ft_strchr("cspdiuxX%", bota[i]))
 				{
-					i = parse2(list, i, bota, args) + 2;
+					i += parse2(list, i, bota, args) + 2;
 					break ;
 				}
 				else
-					i = parse2(list, i, bota, args);
+					i += parse2(list, i, bota, args);
 			}
 			continue;
 		}

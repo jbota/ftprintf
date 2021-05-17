@@ -1,44 +1,43 @@
-C = gcc
-
 NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror
 
-LIBFT = .libft/libft.a
+LIBFT = libft.a
 
-S = srcs
+SRC = char.c conversions.c modifiers.c string.c ft_printf.c int.c aux.c int.c pointer.c udecint.c hex.c
 
-O = obj
+OBJ = $(SRC:.c=.o)
 
-HEADER = includes
+CC = gcc
 
-SOURCES = char.c conversions.c modifiers.c string.c ft_printf.c int.c aux.c int.c pointer.c udecint.c hex.c
+AR = ar rc
 
-SRCS = $(addprefix $(S)/,$(SOURCES))
+INDEX = ranlib
 
-OBJS = $(addprefix $(O)/,$(SOURCES:.o))
+RM = rm -f
+
+LIBFTOBJS = ./libft/*.o
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@make -C $(LIBFT)
-	@cp libft/libft.a ./$(NAME)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+$(NAME): $(LIBFT) $(OBJ)
+	$(AR) $(NAME) $(LIBFTOBJS) $(OBJ)
+	$(INDEX) $(NAME)
 
-$(O)/%.o: $(S)/%.c $(HEADER)/ft_printf.h
-	@mkdir -p obj
-	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
+$(LIBFT):
+	$(MAKE) -C ./libft
+
+.c.o:
+	${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I.
 
 clean:
-	@rm -f $(OBJS)
-	@rm -rf $(O)
-	@make clean -C $(LIBFT)
+	$(RM) *.o $(OBJ)
+	@make clean -C ./libft
 
 fclean : clean
-	@rm -f $(NAME)
-	@make clean -C $(LIBFT)
+	$(RM) $(NAME) 
+	@make fclean -C ./libft
 
 re: fclean all
 
-.PHONY: fclean re all clean
+.PHONY: all, clean, fclean, re

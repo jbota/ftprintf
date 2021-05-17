@@ -6,7 +6,7 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 18:51:38 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/14 20:15:50 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/17 19:19:16 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	left(t_struct *list, char c, char *str, int i)
 				list->width--;
 			}
 		}
-		list->len = list->len + write(1, str, 1);
+		list->len = list->len + write(1, str, ft_strlen(str));
 		list->nprinted = list->nprinted + i;
 	}
 }
