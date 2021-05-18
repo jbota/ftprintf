@@ -16,26 +16,21 @@ void	asterix(const char *bota, t_struct *list, va_list args)
 	}
 }
 
-void	flags(const char *bota, t_struct *list)
+static void	flags(const char *bota, t_struct *list)
 {
-	while (ft_strchr("-+ #0", bota[list->i]))
+	while (ft_strchr("-.0", bota[list->i]))
 	{
 		if (bota[list->i] == '-')
 			list->minus = 1;
-		if (bota[list->i] == '+')
-			list->plus = 1;
-		if (bota[list->i] == ' ')
-			list->space = 1;
-		if (bota[list->i] == '#')
-			list->hash = 1;
+		if (bota[list->i] == '.')
+			list->dot = 1;
 		if (bota[list->i] == '0')
 			list->zero = 1;
+		list->i++;
 	}
-	if (list->plus == 1)
-		list->space = 0;
 }
 
-void	width(const char *bota, t_struct *list, va_list args)
+static void	width(const char *bota, t_struct *list, va_list args)
 {
 	asterix(bota, list, args);
 	if (bota[list->i] >= '0' && bota[list->i] <= '9')
@@ -58,22 +53,22 @@ void	width(const char *bota, t_struct *list, va_list args)
 	}
 }
 
-void	precision(const char *bota, t_struct *list, va_list args, int h)
+static void	precision(const char *bota, t_struct *list, va_list args, int h)
 {
-	int	i;
+	//int	i;
 
-	i = list->i;
-	if (bota[i] == '-')
+	//i = list->i;
+	if (bota[list->i] == '.')
 	{
-		i++;
+		list->i++;
 		list->dot = 1;
-		if (bota[i] >= '0' && bota[i] <= '9')
+		if (bota[list->i] >= '0' && bota[list->i] <= '9')
 		{
-			list->precision = ft_atoi(&bota[i]);
-			while (bota[i] >= '0' && bota[i] <= '9')
-				i++;
+			list->precision = ft_atoi(&bota[list->i]);
+			while (bota[list->i] >= '0' && bota[list->i] <= '9')
+				list->i++;
 		}
-		else if (bota[list->i])
+		else if (bota[list->i] == '*')
 		{
 			h = va_arg(args, int);
 			if (h >= 0)
@@ -81,10 +76,10 @@ void	precision(const char *bota, t_struct *list, va_list args, int h)
 			else if (h < 0)
 				list->dot = 0;
 			while (bota[list->i] == '*')
-				i++;
+				list->i++;
 		}
 	}
-	list->i = i;
+	//list->i = i;
 }
 
 void	modifiers(const char *bota, t_struct *list, va_list args)

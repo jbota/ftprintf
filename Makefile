@@ -16,16 +16,19 @@ INDEX = ranlib
 
 RM = rm -f
 
-LIBFTOBJS = ./libft/*.o
+LIBFTOBJS = $(LIBFT:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(AR) $(NAME) $(LIBFTOBJS) $(OBJ)
+$(NAME): $(LIBFTOBJS) $(OBJ)
+	ar -x $(LIBFT)
+	$(AR) $(NAME) *.o
 	$(INDEX) $(NAME)
+	rm __.SYMDEF\ SORTED
 
 $(LIBFT):
-	$(MAKE) -C ./libft
+	$(MAKE) libft.a -C ./libft
+	cp ./libft/libft.a .
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I.

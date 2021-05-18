@@ -6,7 +6,7 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:36:06 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/14 20:10:55 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/18 18:21:02 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include "./libft/libft.h"
 
-# define FLAGS "cspdiuxX%#-+.* 0123456789hl"
+# define FLAGS "cspdiuxX%-.*0123456789"
 
 typedef struct s_struct
 {
@@ -45,14 +45,9 @@ void	ispercent(t_struct *list);
 void	ischar(t_struct *list, va_list args);
 int		ft_printf(const char *bota, ...);
 void	modifiers(const char *src, t_struct *list, va_list args);
-void	flags(const char *bota, t_struct *list);
-void	width(const char *bota, t_struct *list, va_list args);
-void	precision(const char *bota, t_struct *list, va_list args, int h);
-void	left(t_struct *list, char c, char *str, int i);
-void	right(t_struct *list, char c, char *str, int i);
+void	right(t_struct *list, char *str, int i);
 void	isstring(t_struct *list, va_list args);
-void	left(t_struct *list, char c, char *str, int i);
-void	right(t_struct *list, char c, char *str, int i);
+void	right(t_struct *list, char *str, int i);
 int		signzerowidth(t_struct *list, char c, char sinal, int sign);
 void	right_align(t_struct *list, int len, char *s, int sign);
 void	left_align(t_struct *list, int len, char *s, int sign);
@@ -73,8 +68,8 @@ void	formathex(unsigned int n, t_struct *list, char c, int len);
 void	left_hex(t_struct *list, int len, char *s, char c);
 void	right_hex(t_struct *list, int len, char *s, char c);
 int		hexlen(long n);
-void    asterix(const char *bota, t_struct *list, va_list args);
 char	find(t_struct *list);
 void    zeros(t_struct *list, int hexlen, char *s, char c);
+void	asterix(const char *bota, t_struct *list, va_list args);
 
 #endif
