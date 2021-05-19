@@ -24,13 +24,11 @@ int	ft_printf(const char *bota, ...)
 	if (!list)
 		return (0);
 	zerostruct(list);
+	printedstruct(list);
 	list->bota = (char *)bota;
 	va_start(args, bota);
 	if (!bota[0])
-	{
-		write(1, "", 0);
 		return (0);
-	}
 	if (length == 1 && bota[0] == '%')
 		return (0);
 	else

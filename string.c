@@ -18,14 +18,15 @@ static void	left(t_struct *list,  char *str, int i)
 		i = list->precision;
 	if (list->width > i)
 	{
-		while (list->width > i)
+		while ((list->width - 1) > 0)
 		{	
 			list->len = list->len + write(1, " ", 1);
 			list->nprinted++;
 			list->width--;
 		}
 	}
-	list->nprinted += write(1, str, i);
+	list->len = list->len + write(1, str, i);
+	list->nprinted += i;
 }
 
 void	right(t_struct *list, char *str, int i)
@@ -45,7 +46,7 @@ void	right(t_struct *list, char *str, int i)
 void	isstring(t_struct *list, va_list args)
 {
 	char	*str;
-	int		i;
+	int	i;
 
 	str = va_arg(args, char *);
 	if (str == NULL)

@@ -24,7 +24,6 @@ $(NAME): $(LIBFTOBJS) $(OBJ)
 	ar -x $(LIBFT)
 	$(AR) $(NAME) *.o
 	$(INDEX) $(NAME)
-	rm __.SYMDEF\ SORTED
 
 $(LIBFT):
 	$(MAKE) libft.a -C ./libft

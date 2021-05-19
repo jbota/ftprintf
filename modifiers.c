@@ -18,12 +18,10 @@ void	asterix(const char *bota, t_struct *list, va_list args)
 
 static void	flags(const char *bota, t_struct *list)
 {
-	while (ft_strchr("-.0", bota[list->i]))
+	while (ft_strchr("-0", bota[list->i]))
 	{
 		if (bota[list->i] == '-')
 			list->minus = 1;
-		if (bota[list->i] == '.')
-			list->dot = 1;
 		if (bota[list->i] == '0')
 			list->zero = 1;
 		list->i++;
@@ -75,8 +73,8 @@ static void	precision(const char *bota, t_struct *list, va_list args, int h)
 				list->precision = h;
 			else if (h < 0)
 				list->dot = 0;
-			while (bota[list->i] == '*')
-				list->i++;
+			//while (bota[list->i] == '*')
+			list->i++;
 		}
 	}
 	//list->i = i;

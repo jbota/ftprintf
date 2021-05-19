@@ -21,21 +21,22 @@
 typedef struct s_struct
 {
 	char	*bota;
-	int		nprinted;
-	int		i;
+	int	nprinted;
+	int	i;
 	int		len;
-	int		minus; //-i
-	int		plus; //+
-	int		space; // ' '
-	int		zero; // 0
-	int		dot; // . precisionf
-	int		asterix; //*
-	int		width; //0-9
-	int		hash; //#
-	int		precision; //.#
+	int		minus;
+	int	plus;
+	int	space;
+	int	zero;
+	int	hash;
+	int		dot;
+	int		asterix;
+	int		width;
+	int		precision;
 }			t_struct;
 
 void	zerostruct(t_struct *list);
+void    printedstruct(t_struct *list);
 int		parse(const char *bota, t_struct *list, va_list args, int i);
 int		parse2(t_struct *list, int position, const char *bota, va_list args);
 void	conversions(char c, va_list args, t_struct *list);

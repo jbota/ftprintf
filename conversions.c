@@ -12,10 +12,14 @@
 
 #include "ft_printf.h"
 
-void	zerostruct(t_struct *list)
-{
+void	printedstruct(t_struct *list)
+{	
 	list->i = 0;
 	list->nprinted = 0;
+}
+
+void	zerostruct(t_struct *list)
+{
 	list->minus = 0;
 	list->len = 0;
 	list->zero = 0;
@@ -40,10 +44,14 @@ int	parse(const char *bota, t_struct *list, va_list args, int i)
 				if (ft_strchr("cspdiuxX%", bota[i]))
 				{
 					conversions(bota[i++], args, list);
+					zerostruct(list);
 					break ;
 				}
 				else
-					i += parse2(list, i, bota, args);	
+					list->i = i;
+					modifiers(bota, list, args);
+					i = list->i - 1;
+				//	i += parse2(list, i, bota, args);	
 			}
 			continue;
 		}
@@ -51,7 +59,7 @@ int	parse(const char *bota, t_struct *list, va_list args, int i)
 	}
 	return (list->nprinted);
 }
-
+/*
 int	parse2(t_struct *list, int position, const char *bota, va_list args)
 {
 	list->i = position;
@@ -64,7 +72,7 @@ int	parse2(t_struct *list, int position, const char *bota, va_list args)
 	}
 	return (list->i - 1);
 }
-
+*/
 void	conversions(char c, va_list args, t_struct *list)
 {
 	if (c == 'c')
