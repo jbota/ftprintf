@@ -57,19 +57,22 @@ int		hex_len(unsigned long long n);
 int		right_palign(int pwidth, int pprecision, int hexlen, char *s);
 int		left_palign(int pwidth, int pprecision, int hexlen, char *s);
 void	ispointer(t_struct *list, va_list args, int n);
-void	right_u(t_struct *list, int len, char *s, int sinal);
-void	left_u(t_struct	*list, int len, char *s, int sinal);
-void	formatvalue(unsigned int n, t_struct *list, int sinal);
+//void	right_u(t_struct *list, int len, char *s, int sinal);
+//void	left_u(t_struct	*list, int len, char *s, int sinal);
+//void	formatvalue(unsigned int n, t_struct *list, int sinal);
 void	isudecint(t_struct *list, va_list args);
 int		manel(long n);
 char	*ft_itoa_base(unsigned int n, unsigned int base);
 void	ishex(t_struct *list, va_list args, char c);
-void	formathex(unsigned int n, t_struct *list, char c, int len);
-void	left_hex(t_struct *list, int len, char *s, char c);
-void	right_hex(t_struct *list, int len, char *s, char c);
+//void	formathex(unsigned long n, t_struct *list, char c);
+//void	left_hex(t_struct *list, int len, char *s, char c);
+//void	right_hex(t_struct *list, int len, char *s, char c);
 int		hexlen(long n);
 char	find(t_struct *list);
 void    zeros(t_struct *list, int hexlen, char *s, char c);
 void	asterix(const char *bota, t_struct *list, va_list args);
+char    *ft_u_itoa(unsigned int n);
+char	*ft_base_itoa(unsigned long n, int base);
+char    *ft_lower_str(char *str);
 
 #endif

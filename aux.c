@@ -61,6 +61,19 @@ int	manel(long n)
 	return (i);
 }
 
+char	*ft_lower_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (str);
+}
+
 char	*ft_itoa_base(unsigned int n, unsigned int base)
 {
 	char	*dest;
@@ -83,3 +96,4 @@ char	*ft_itoa_base(unsigned int n, unsigned int base)
 	}
 	return (dest);
 }
+
