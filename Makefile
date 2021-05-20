@@ -4,7 +4,7 @@ FLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft.a
 
-SRC = char.c conversions.c modifiers.c string.c ft_printf.c int.c aux.c int.c pointer.c udecint.c hex.c
+SRC = ft_base_itoa.c ft_u_itoa.c char.c conversions.c modifiers.c string.c ft_printf.c int.c aux.c int.c pointer.c udecint.c hex.c
 
 OBJ = $(SRC:.c=.o)
 
