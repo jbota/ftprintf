@@ -9,9 +9,9 @@ void	asterix(const char *bota, t_struct *list, va_list args)
 		if (list->width < 0)
 		{
 			list->minus = 1;
-			list->minus = -(list->width);
+			list->width = -(list->width);
 		}
-		while (bota[list->i] == '*')
+	//	while (bota[list->i] == '*')
 			list->i++;
 	}
 }

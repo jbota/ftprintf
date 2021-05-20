@@ -18,7 +18,7 @@ static void	left(t_struct *list,  char *str, int i)
 		i = list->precision;
 	if (list->width > i)
 	{
-		while ((list->width - 1) > 0)
+		while ((list->width - i) > 0)
 		{	
 			list->len = list->len + write(1, " ", 1);
 			list->nprinted++;

@@ -48,9 +48,11 @@ int	parse(const char *bota, t_struct *list, va_list args, int i)
 					break ;
 				}
 				else
+				{
 					list->i = i;
 					modifiers(bota, list, args);
 					i = list->i - 1;
+				}
 				//	i += parse2(list, i, bota, args);	
 			}
 			continue;

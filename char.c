@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	putzeros(int i)
+/*void	putzeros(int i)
 {
 	while (i > 0)
 	{
@@ -20,7 +20,7 @@ void	putzeros(int i)
 		i--;
 	}
 }
-
+*/
 void	putspaces(int i)
 {
 	while (i > 0)
@@ -32,24 +32,17 @@ void	putspaces(int i)
 
 void	ispercent(t_struct *list)
 {
-	int	i;
-
 	if (list->width != 0 && list->minus == 0)
 	{
-		i = list->minus - 1;
-		if (list->zero != 0)
-			putzeros(i);
-		else
-			putspaces(i);
+		putspaces(list->width - 1);
 		write(1, "%", 1);
-		list->nprinted = list->nprinted + i + 1;
+		list->nprinted = list->nprinted + list->width;
 	}
 	else if (list->width && list->minus == 1)
 	{
-		i = list->width - 1;
 		write(1, "%", 1);
-		putspaces(i);
-		list->nprinted = list->nprinted + i + 1;
+		putspaces(list->width - 1);
+		list->nprinted = list->nprinted + list->width;
 	}
 	else
 	{
@@ -65,18 +58,15 @@ void	ischar(t_struct *list, va_list args)
 	c = (unsigned char)va_arg(args, int);
 	if (list->width && list->minus == 0)
 	{
-		if (list->zero != 0)
-			putzeros(list->width - 1);
-		if (list->zero == 0)
-			putspaces(list->width - 1);
+		putspaces(list->width -1);
 		write(1, &c, 1);
-		list->nprinted = list->nprinted + (list->width - 1);
+		list->nprinted = list->nprinted + list->width;
 	}
 	else if (list->width && list->minus == 1)
 	{
 		write(1, &c, 1);
-		putspaces(list->width -1);
-		list->nprinted = list->nprinted + (list->width - 1);
+		putspaces(list->width - 1);
+		list->nprinted = list->nprinted + list->width;
 	}
 	else
 	{

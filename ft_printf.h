@@ -40,7 +40,6 @@ void    printedstruct(t_struct *list);
 int		parse(const char *bota, t_struct *list, va_list args, int i);
 int		parse2(t_struct *list, int position, const char *bota, va_list args);
 void	conversions(char c, va_list args, t_struct *list);
-void	putzeros(int i);
 void	putspaces(int i);
 void	ispercent(t_struct *list);
 void	ischar(t_struct *list, va_list args);
