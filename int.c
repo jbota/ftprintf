@@ -6,7 +6,7 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:14:48 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/14 20:14:56 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/21 15:37:29 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	signzerowidth(t_struct *list, char c, char sinal, int sign)
 	{
 		if (sinal != '\0')
 			list->nprinted += write(1, &sinal, 1);
-		sign = -sign;
+		sign = '\0';
 	}
 	return (sign);
 }
@@ -28,7 +28,6 @@ void	right_align(t_struct *list, int len, char *s, int sign)
 	char	sinal;
 	char	c;
 
-//	sign = signzerowidth(list, c, sinal, sign);
 	if (list->zero && !list->dot)
 		c = '0';
 	else
@@ -38,9 +37,7 @@ void	right_align(t_struct *list, int len, char *s, int sign)
 		sinal = '-';
 	sign = signzerowidth(list, c, sinal, sign);
 	while (list->width-- > 0)
-	{
 		list->nprinted += write(1, &c, 1);
-	}
 	if (sign != 0 && sinal != '\0')
 		list->nprinted += write(1, &sign, 1);
 	while (list->precision-- > 0)
@@ -67,7 +64,7 @@ void	left_align(t_struct *list, int len, char *s, int sign)
 
 void	formatint(int n, t_struct *list, int sign)
 {
-	int	len;
+	int		len;
 	char	*s;
 
 	s = ft_itoa(n);
@@ -96,6 +93,11 @@ void	formatint(int n, t_struct *list, int sign)
 void	isint(t_struct *list, va_list args, int sign, int i)
 {
 	i = (int)va_arg(args, int);
+	if (i == -2147483648)
+	{
+		formatint(i, list, sign);
+		return ;
+	}
 	if (i < 0)
 	{
 		sign = '-';

@@ -6,7 +6,7 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:35:03 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/14 20:10:48 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/20 23:31:57 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	right_hex(t_struct *list, int len, char *s)
 {
 	char	c;
 
-//	h = find(list);
 	if (list->zero && !list->dot)
 		c = '0';
 	else
@@ -60,13 +59,11 @@ static void	left_hex(t_struct *list, int len, char *s)
 static void	formathex(unsigned long n, t_struct *list, char c)
 {
 	char	*s;
-	int	len;
+	int		len;
 
 	s = ft_base_itoa(n, 16);
 	if (c == 'x')
 		s = ft_lower_str(s);
-//	else if (c == 'X')
-//		s = ft_base_itoa(n, 16);
 	len = ft_strlen(s);
 	if (n == 0)
 		len = 1;
@@ -89,11 +86,8 @@ static void	formathex(unsigned long n, t_struct *list, char c)
 void	ishex(t_struct *list, va_list args, char c)
 {
 	unsigned long	n;
-//	int		len;
 
 	n = 0;
-//	if (list->len == 0)
 	n = va_arg(args, unsigned int);
-//	len = hexlen(n);
 	formathex(n, list, c);
 }

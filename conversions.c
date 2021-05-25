@@ -6,7 +6,7 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:35:21 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/18 18:28:25 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/21 15:35:46 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,33 +48,23 @@ int	parse(const char *bota, t_struct *list, va_list args, int i)
 					break ;
 				}
 				else
-				{
-					list->i = i;
-					modifiers(bota, list, args);
-					i = list->i - 1;
-				}
-				//	i += parse2(list, i, bota, args);	
+					i = parse2(i, args, list, bota);
 			}
-			continue;
+			continue ;
 		}
 		i++;
 	}
 	return (list->nprinted);
 }
-/*
-int	parse2(t_struct *list, int position, const char *bota, va_list args)
+
+int	parse2(int i, va_list args, t_struct *list, const char *bota)
 {
-	list->i = position;
-	if (!ft_strchr("cspdiuxX%", bota[position]))
-		modifiers(bota, list, args);
-	else if (ft_strchr("cspdiuxX%", bota[position]))
-	{
-		conversions(bota[position], args, list);
-		zerostruct(list);
-	}
-	return (list->i - 1);
+	list->i = i;
+	modifiers(bota, list, args);
+	i = list->i - 1;
+	return (i);
 }
-*/
+
 void	conversions(char c, va_list args, t_struct *list)
 {
 	if (c == 'c')

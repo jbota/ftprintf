@@ -6,21 +6,12 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:29:10 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/14 20:24:48 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/20 23:18:43 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*void	putzeros(int i)
-{
-	while (i > 0)
-	{
-		write(1, "0", 1);
-		i--;
-	}
-}
-*/
 void	putspaces(int i)
 {
 	while (i > 0)

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   modifiers.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/20 23:33:37 by jbota             #+#    #+#             */
+/*   Updated: 2021/05/21 15:36:00 by jbota            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -11,8 +22,7 @@ void	asterix(const char *bota, t_struct *list, va_list args)
 			list->minus = 1;
 			list->width = -(list->width);
 		}
-	//	while (bota[list->i] == '*')
-			list->i++;
+		list->i++;
 	}
 }
 
@@ -53,9 +63,6 @@ static void	width(const char *bota, t_struct *list, va_list args)
 
 static void	precision(const char *bota, t_struct *list, va_list args, int h)
 {
-	//int	i;
-
-	//i = list->i;
 	if (bota[list->i] == '.')
 	{
 		list->i++;
@@ -73,11 +80,9 @@ static void	precision(const char *bota, t_struct *list, va_list args, int h)
 				list->precision = h;
 			else if (h < 0)
 				list->dot = 0;
-			//while (bota[list->i] == '*')
 			list->i++;
 		}
 	}
-	//list->i = i;
 }
 
 void	modifiers(const char *bota, t_struct *list, va_list args)

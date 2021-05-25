@@ -6,7 +6,7 @@
 /*   By: jbota <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:14:48 by jbota             #+#    #+#             */
-/*   Updated: 2021/05/14 20:16:02 by jbota            ###   ########.fr       */
+/*   Updated: 2021/05/20 23:47:29 by jbota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	right_u(t_struct *list, int len, char *s)
 	while (list->precision-- > 0)
 		list->nprinted += write(1, "0", 1);
 	write(1, s, len);
-	list->nprinted += len;	
+	list->nprinted += len;
 }
 
 static void	left_u(t_struct *list, int len, char *s)
@@ -47,7 +47,7 @@ static void	left_u(t_struct *list, int len, char *s)
 static void	formatvalue(unsigned int n, t_struct *list)
 {
 	char	*s;
-	int	len;
+	int		len;
 
 	s = ft_u_itoa(n);
 	len = manel(n);
@@ -59,7 +59,6 @@ static void	formatvalue(unsigned int n, t_struct *list)
 		list->precision = list->precision - len;
 	else
 		list->precision = 0;
-
 	list->width = list->width - (list->precision + len);
 	if (list->width < 0)
 		list->width = 0;
@@ -73,7 +72,7 @@ static void	formatvalue(unsigned int n, t_struct *list)
 void	isudecint(t_struct *list, va_list args)
 {
 	unsigned long	n;
-	
+
 	n = 0;
 	n = va_arg(args, unsigned int);
 	formatvalue(n, list);
